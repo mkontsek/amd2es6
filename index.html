@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AMD 2 ES6</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="highlight.min.js"></script>
+    <script src="acorn.min.js"></script>
+    <script src="escodegen.browser.min.js"></script>
+</head>
+<body>
+    <h1>
+        Transform AMD to ES6 for code files using AST Transformations<br />
+        <small>tested only in Chrome</small>
+    </h1>
+
+    <p>
+        This app helps with transforming AMD files to CommonJS format.
+        <strong>
+            The output does not account for ESlint rules, copy/paste it into your IDE and correct the errors before
+            commiting to Git
+        </strong>
+    </p>
+
+    <ol>
+        <li>
+            Copy and paste the entire AMD file contents to the text area named 'Source'
+        </li>
+        <li>
+            Click on 'Transform'
+        </li>
+        <li>
+            Preview transformation in Output area
+        </li>
+        <li>
+            Copy and past output from text area next to the Output area, you cannot directly copy/paste from output
+            area.
+        </li>
+    </ol>
+
+    <p>
+        For correct migration into a class structure, you need to have the return statement inside of the <code>define()</code>method in the following format:
+        <pre>
+              /**
+                * @class ActiveInstallmentCollection
+                */
+              return Backbone.Collection.extend({ ...
+        </pre>
+    </p>
+
+    <div class="app">
+        <div class="io">
+            <div>
+                <h2>Source</h2>
+                <textarea class="amd"></textarea>
+            </div>
+            <div>
+                <h2>Output</h2>
+                <pre><code id="code-output" class="es6 hljs javascript"></code></pre>
+            </div>
+            <div>
+                <h2>
+                    Select and copy from
+                    <small>non-clickable</small>
+                    output
+                </h2>
+                <textarea class="output-copy"></textarea>
+            </div>
+        </div>
+        <button name="submit">Transform</button>
+        <div id="transformation-result"></div>
+    </div>
+
+    <script src="estreeUtils.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
